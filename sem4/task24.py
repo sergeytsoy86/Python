@@ -11,20 +11,31 @@
 Напишите программу для нахождения максимального числа ягод, 
 которое может собрать за один заход собирающий модуль, 
 находясь перед некоторым кустом заданной во входном файле грядки.
-Input:
-4 -> 1 2 3 4
-
-Output:
-9
 '''
-n = int(input('Введите количество кустов: '))
-arr = list()
-for i in range(n):
-    x = int(input('Введите урожайность куста: '))
-    arr.append(x)
+# n = int(input('Введите количество кустов: '))
+# arr = list()
+# for i in range(n):
+#     x = int(input('Введите урожайность куста: '))
+#     arr.append(x)
 
-arr_count = list()
-for i in range(len(arr) - 1):
-    arr_count.append(arr[i - 1] + arr[i]+arr[i + 1])
-arr_count.append(arr[-2]+arr[-1]+arr[0])
-print(f'Максимальный урожай: {max(arr_count)}')   
+# arr_count = list()
+# for i in range(len(arr) - 1):
+#     arr_count.append(arr[i - 1] + arr[i]+arr[i + 1])
+# arr_count.append(arr[-2]+arr[-1]+arr[0])
+# print(f'Максимальный урожай: {max(arr_count)}') 
+
+# 2 вариант решения
+
+from random import randint as rd
+
+
+n = int(input("Введите кол-во кустов: "))
+weight = []
+for i in range(n):
+    weight.append(rd(1, 15))
+print(weight)
+max_summa = 0
+for i in range(n):
+    if max_summa < weight[i - 1] + weight[i] + weight[(i + 1) % n]:
+        max_summa = weight[i - 1] + weight[i] + weight[(i + 1) % n]
+print(max_summa)
